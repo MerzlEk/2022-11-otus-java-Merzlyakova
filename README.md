@@ -1,1 +1,2 @@
-# 2022-11-otus-java-Merzlyakova
+Мерзлякова Екатерина Алексеевна
+Java Professional

@@ -11,7 +11,8 @@ public class CustomerService {
 
     public Map.Entry<Customer, String> getSmallest() {
         //Возможно, чтобы реализовать этот метод, потребуется посмотреть как Map.Entry сделан в jdk
-        return navigableMap.firstEntry();
+        Map.Entry<Customer, String> customerStringEntry = navigableMap.firstEntry();
+        return new AbstractMap.SimpleEntry<>(new Customer(customerStringEntry.getKey()), customerStringEntry.getValue());
     }
 
     public Map.Entry<Customer, String> getNext(Customer customer) {

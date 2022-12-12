@@ -12,12 +12,16 @@ public class CustomerService {
     public Map.Entry<Customer, String> getSmallest() {
         //Возможно, чтобы реализовать этот метод, потребуется посмотреть как Map.Entry сделан в jdk
         Map.Entry<Customer, String> customerStringEntry = navigableMap.firstEntry();
-        return new AbstractMap.SimpleEntry<>(new Customer(customerStringEntry.getKey()), customerStringEntry.getValue());
+        return Optional.ofNullable(customerStringEntry)
+                .map(c -> new AbstractMap.SimpleEntry<>(
+                        new Customer(c.getKey()), c.getValue()))
+                .orElse(null);
     }
 
     public Map.Entry<Customer, String> getNext(Customer customer) {
-        return Optional.ofNullable(navigableMap.higherEntry(new Customer(customer)))
-                .map(AbstractMap.SimpleEntry::new)
+        return Optional.ofNullable(navigableMap.higherEntry(customer))
+                .map(c -> new AbstractMap.SimpleEntry<>(
+                        new Customer(c.getKey()), c.getValue()))
                 .orElse(null);
     }
 
